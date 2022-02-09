@@ -1,0 +1,38 @@
+---
+name: "HA-Promtail"
+description: "Promtail add-on!"
+version: "1.0.0"
+slug: "promtail"
+url: https://github.com/dtx3k/HA-Promtail
+startup: services
+ingress: true
+ingress_port: 9191
+ingress_stream: true
+panel_icon: mdi:file
+panel_title: Promtail
+arch:
+  - amd64
+map:
+  - config
+watchdog: http://[HOST]:9191/api/health
+options:
+  plugins: []
+  env_vars: []
+  ssl: false
+  certfile: fullchain.pem
+  keyfile: privkey.pem
+ports:
+  80/tcp: null
+ports_description:
+  80/tcp: Not required for Ingress
+schema:
+  log_level: list(trace|debug|info|notice|warning|error|fatal)?
+  plugins:
+    - str
+  certfile: str
+  keyfile: str
+  ssl: bool
+  promtail_ingress_user: str?
+  env_vars:
+    - name: match(^GF_([A-Z0-9_])+$)
+      value: str
