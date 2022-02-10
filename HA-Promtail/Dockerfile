@@ -22,7 +22,7 @@ RUN \
     && unzip promtail.zip \
 # make sure it is executable
     && chmod a+x ["/promtail-linux-{ARCH}"] \
-
+# move it
     && mv ["/promtail-linux-{ARCH}"] ["/usr/bin/promtail"] \
 # cleanup download
     && rm -fr \
